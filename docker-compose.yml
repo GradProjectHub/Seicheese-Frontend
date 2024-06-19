@@ -1,0 +1,27 @@
+services:
+    app:
+        image: seicheese:front
+        container_name: React_Native
+        ports:
+            - "8081:8081"
+        volumes:
+            - ./src:/var/app
+            - node_modules:/var/app/node_modules
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+            - REACT_NATIVE_PACKAGER_HOSTNAME=${LOCAL_IP_ADDR}
+        tty: true
+        networks:
+            - seicheese-frontend
+
+networks:
+    seicheese-frontend:
+        driver: bridge
+        external: true
+
+volumes:
+    node_modules:
+        driver_opts:
+            type: none
+            device: ${PWD}/src/node_modules
+            o: bind
