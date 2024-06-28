@@ -1,29 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button, TamaguiProvider } from 'tamagui';
-import config from './tamagui.config';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MainScreeen from './app/main/MainApp';
+import TestScreen from './app/test';
+import MenuScreen from './app/menu';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-
-      <TamaguiProvider config={config}>
-        <Button size="$3" theme="active">
-            スタート
-        </Button>
-      </TamaguiProvider>
-
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={MainScreeen} />
+        <Stack.Screen name="Test" component={TestScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
