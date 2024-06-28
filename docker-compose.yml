@@ -21,6 +21,7 @@ networks:
 
 volumes:
     node_modules:
+        driver: local
         driver_opts:
             type: none
             device: ${PWD}/src/node_modules
