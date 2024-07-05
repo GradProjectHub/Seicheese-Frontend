@@ -2,13 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button, TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
-import Footer from './main/Footer'
-import Header from './main/Header';
 
 const TestScreen=() =>{
   return (
     <View style={styles.container}>
-      <Header />
+      
       <Text>こんにちは！</Text>
       <StatusBar style="auto" />
 
@@ -17,7 +15,7 @@ const TestScreen=() =>{
             スタート
         </Button>
       </TamaguiProvider>
-      <Footer />
+      
     </View>
   );
 }

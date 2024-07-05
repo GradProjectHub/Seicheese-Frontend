@@ -10,15 +10,18 @@ const Header = () => {
 }
 const styles = {
   headerContainer: {
-    height: 100,
+    height: 120,
+    
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
     top: 0,
     width: '100%',
+    zIndex: 1,
   },
   headerText: {
+    
     color: '#777',
     fontSize: 16,
   },

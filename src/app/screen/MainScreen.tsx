@@ -1,18 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button, TamaguiProvider } from 'tamagui';
-import config from '../tamagui.config';
+import config from '../../tamagui.config';
 
-const MenuScreen=() =>{
+export default function MainScreeen({ navigation }) {
   return (
     <View style={styles.container}>
-      
-      <Text>こんにちは！</Text>
+      <Text>master</Text>
       <StatusBar style="auto" />
 
+
       <TamaguiProvider config={config}>
-        <Button size="$3" theme="active">
-            スタート
+        <Button size="$3" theme="active" onPress={() => navigation.navigate('SubScreen')}>
+            サブへ
         </Button>
       </TamaguiProvider>
       
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F2F8',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
 });
-
-export default MenuScreen;
