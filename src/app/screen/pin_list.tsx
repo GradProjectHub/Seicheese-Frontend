@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
-import { TamaguiProvider } from 'tamagui';
-import config from './tamagui.config';
+import { TamaguiProvider, Button } from 'tamagui';
+import config from '../../tamagui.config';
 
 const pinsPerPage = 20; // 1ページに表示するピンの数
 
@@ -10,16 +10,16 @@ const pinsPerPage = 20; // 1ページに表示するピンの数
 
 // ピンの画像パスの配列
 const pinImages = [
-  require('./assets/pin_img/pin_1.png'),
-  require('./assets/pin_img/pin_2.png'),
-  require('./assets/pin_img/pin_3.png'),
-  require('./assets/pin_img/pin_4.png'),
-  require('./assets/pin_img/pin_5.png'),
+  require('../../assets/pin_img/pin_1.png'),
+  require('../../assets/pin_img/pin_2.png'),
+  require('../../assets/pin_img/pin_3.png'),
+  require('../../assets/pin_img/pin_4.png'),
+  require('../../assets/pin_img/pin_5.png'),
 
   // ...他の画像パスを追加
 ];
 
-export default function App() {
+export default function Pin_list({ navigation }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedPin, setSelectedPin] = useState(null);
@@ -46,10 +46,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TamaguiProvider config={config}>
+          <Button size="$3" theme="active" onPress={() => navigation.navigate('MenuScreen')}>
+            戻る
+          </Button>
+        </TamaguiProvider>
+      </View>
       <StatusBar style="auto" />
 
       <TamaguiProvider config={config}>
-        <View style={styles.boxTop}></View>
+        
 
         <ScrollView contentContainerStyle={styles.pinsContainer}>
           {displayedPins.map((pin) => (
@@ -72,7 +79,7 @@ export default function App() {
           ))}
         </View>
 
-        <View style={styles.boxBottom}></View>
+        
       </TamaguiProvider>
 
       <Modal
@@ -112,22 +119,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  boxTop: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    height: 100,
-    backgroundColor: '#FFFFFF',
-    zIndex: 2,
-  },
-  boxBottom: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: 100,
-    backgroundColor: '#FFFFFF',
-    zIndex: 2,
-  },
+  
+  
   pinsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -233,5 +226,10 @@ const styles = StyleSheet.create({
   modalButtonText: {
     color: '#FFF',
     fontWeight: 'bold',
+  },
+  header: {
+    position: 'absolute',
+    top: 40, 
+    left: 20, 
   },
 });

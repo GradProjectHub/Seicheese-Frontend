@@ -5,7 +5,9 @@ import MainScreen from '../screen/MainScreen';
 import SubScreen from '../screen/subscreen';
 import TestScreen from '../test';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MenuScreen from '../menu';
+import MenuScreen from '../screen/menu';
+import Pin_list from '../screen/pin_list';
+import Work_list from '../screen/work_list';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -19,6 +21,18 @@ function MainStackNavigator() {
     }}>
       <MainStack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false,  }} />
       <MainStack.Screen name="SubScreen" component={SubScreen} />
+    </MainStack.Navigator>
+  );
+}
+function MenuStackNavigator(){
+  return (
+    <MainStack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
+      <MainStack.Screen name="MainScreen" component={MenuScreen} options={{ headerShown: false,  }} />
+      <MainStack.Screen name="Pin_list" component={Pin_list} />
+      <MainStack.Screen name="Work_list" component={Work_list} />
     </MainStack.Navigator>
   );
 }
@@ -55,7 +69,7 @@ export default function MyTabs() {
         />
         <Tab.Screen
           name="メニュー"
-          component={MenuScreen}
+          component={MenuStackNavigator}
           options={{
             tabBarLabel: 'メニュー',
             tabBarIcon: ({ color, size }) => (

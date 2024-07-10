@@ -6,13 +6,15 @@ import config from '../../tamagui.config';
 export default function SubScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TamaguiProvider config={config}>
+          <Button size="$3" theme="active" onPress={() => navigation.navigate('MainScreen')}>
+            戻る
+          </Button>
+        </TamaguiProvider>
+      </View>
       <Text>subscreen！</Text>
       <StatusBar style="auto" />
-      <TamaguiProvider config={config}>
-        <Button size="$3" theme="active"onPress={() => navigation.navigate('MainScreen')}>
-            戻る
-        </Button>
-      </TamaguiProvider>
     </View>
   );
 }
@@ -24,6 +26,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    position: 'absolute',
+    top: 40, 
+    left: 20, 
+  },
 });
-
-
