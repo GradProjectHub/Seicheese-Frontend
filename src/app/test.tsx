@@ -7,7 +7,7 @@ const TestScreen=() =>{
   return (
     <View style={styles.container}>
       
-      <Text>こんにちは！</Text>
+      <Text>こんばんは！</Text>
       <StatusBar style="auto" />
 
       <TamaguiProvider config={config}>

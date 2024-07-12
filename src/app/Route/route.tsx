@@ -8,6 +8,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MenuScreen from '../screen/menu';
 import Pin_list from '../screen/pin_list';
 import Work_list from '../screen/work_list';
+import Stamp from '../screen/stamp';
+
+
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -36,6 +39,16 @@ function MenuStackNavigator(){
     </MainStack.Navigator>
   );
 }
+function StampStackNavigator(){
+  return (
+    <MainStack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
+      <MainStack.Screen name="Stamp" component={Stamp} options={{ headerShown: false,  }} />
+    </MainStack.Navigator>
+  );
+}
 
 
 // フッター用
@@ -49,7 +62,7 @@ export default function MyTabs() {
       >
         <Tab.Screen
           name="スタンプ"
-          component={TestScreen}
+          component={StampStackNavigator}
           options={{
             tabBarLabel: 'スタンプ',
             tabBarIcon: ({ color, size }) => (
