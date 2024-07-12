@@ -6,8 +6,7 @@ import config from '../tamagui.config';
 const TestScreen=() =>{
   return (
     <View style={styles.container}>
-      
-      <Text>こんばんは！</Text>
+      <Text>おはよう！</Text>
       <StatusBar style="auto" />
 
       <TamaguiProvider config={config}>

@@ -12,17 +12,16 @@ import { TamaguiProvider, Button } from 'tamagui';
 import config from '../../tamagui.config';
 
 const items = [
-  { id: "1", title: "仮面ライダーシリーズ", count: 5 },
-  { id: "2", title: "ガンダムシリーズ", count: 6 },
-  { id: "3", title: "サザエさん", count: 2 },
-  { id: "4", title: "ドラえもん", count: 40 },
-  { id: "5", title: "NARUTO", count: 2 },
-  { id: "6", title: "のだめカンタービレ", count: 40 },
+  { id: "1", title: "機動戦士ガンダム", count: 5 },
+  { id: "2", title: "機動戦士Zガンダム", count: 6 },
+  { id: "3", title: "機動戦士ガンダムZZ", count: 2 },
+  { id: "4", title: "機動戦士ガンダム逆襲のシャア", count: 40 },
+  { id: "5", title: "機動戦士ガンダムユニコーン", count: 2 },
 ];
 
 const Separator = () => <View style={styles.separator} />;
 
-export default function Work_list({ navigation }) {
+export default function Work_list_detail({ navigation }) {
   const handlePress = (item) => {
     Alert.alert(`${item.title}がクリックされました`);
   };
@@ -30,12 +29,12 @@ export default function Work_list({ navigation }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('Work_list_detail')}
+      onPress={() => handlePress(item)}
       activeOpacity={0.7}
     >
       <View style={styles.itemContent}>
         <Text style={styles.itemText}>{item.title}</Text>
-        <Text style={styles.itemCount}>登録数 {item.count}件</Text>
+        <Text style={styles.itemCount}>{">>"}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -44,7 +43,7 @@ export default function Work_list({ navigation }) {
     <View style={styles.container}>
       <View style={styles.header}>
         <TamaguiProvider config={config}>
-          <Button size="$3" theme="active"onPress={() => navigation.navigate('MenuScreen')}>
+          <Button size="$3" theme="active"onPress={() => navigation.navigate('Work_list')}>
             戻る
           </Button>
         </TamaguiProvider>
@@ -52,7 +51,8 @@ export default function Work_list({ navigation }) {
       <StatusBar style="light" backgroundColor="#6200ee" />
       <View style={styles.listContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>作品一覧</Text>
+          <Text style={styles.title}>ガンダムシリーズ</Text>
+          <View style={styles.titleUnderline} />
         </View>
         <FlatList
           data={items}
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end", // 左詰めにするために変更
   },
   titleContainer: {
-    width: "40%",
+    width: "60%",
     borderBottomWidth: 2,
     borderBottomColor: "#000",
     marginBottom: 10,
@@ -112,12 +112,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#333",
     fontWeight: "bold",
-    textAlign: "left", // 左詰めにするために追加
+    textAlign: "left",
   },
   itemCount: {
     fontSize: 16,
     color: "#999",
-    textAlign: "left", // 左詰めにするために追加
+    textAlign: "left",
   },
   separator: {
     height: 1,
