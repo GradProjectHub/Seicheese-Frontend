@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   },
   header:{
     position: 'absolute',
-    top: 40, 
+    top: 20, 
     left: 20,
     zIndex: 1,
   }
