@@ -20,7 +20,7 @@ export default function MenuScreen({ navigation }) {
           <TamaguiProvider config={config}>
             <YStack space="$6" padding="$4">
               <View style={styles.titleContainer}>
-                <Text style={styles.mainTitle}>メニュー</Text>
+                <Text style={styles.mainTitle}>メニュー画面</Text>
               </View>
               
               <YStack space="$4" alignItems="center">
