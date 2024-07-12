@@ -30,7 +30,7 @@ function MenuStackNavigator(){
     screenOptions={{
       headerShown: false
     }}>
-      <MainStack.Screen name="MainScreen" component={MenuScreen} options={{ headerShown: false,  }} />
+      <MainStack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false,  }} />
       <MainStack.Screen name="Pin_list" component={Pin_list} />
       <MainStack.Screen name="Work_list" component={Work_list} />
     </MainStack.Navigator>

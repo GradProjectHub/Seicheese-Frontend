@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import { TamaguiProvider, Button } from 'tamagui';
+import config from '../../tamagui.config';
 
 const items = [
   { id: "1", title: "仮面ライダーシリーズ", count: 5 },
@@ -20,7 +22,7 @@ const items = [
 
 const Separator = () => <View style={styles.separator} />;
 
-export default function App() {
+export default function Work_list({ navigation }) {
   const handlePress = (item) => {
     Alert.alert(`${item.title}がクリックされました`);
   };
@@ -40,9 +42,18 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TamaguiProvider config={config}>
+          <Button size="$3" theme="active"onPress={() => navigation.navigate('MenuScreen')}>
+            戻る
+          </Button>
+        </TamaguiProvider>
+      </View>
       <StatusBar style="light" backgroundColor="#6200ee" />
       <View style={styles.listContainer}>
-        <Text style={styles.title}>作品一覧</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>作品一覧</Text>
+        </View>
         <FlatList
           data={items}
           renderItem={renderItem}
@@ -65,14 +76,21 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingHorizontal: 10,
-    alignItems: "flex-start", // 左詰めにするために変更
+    alignItems: "flex-end", // 左詰めにするために変更
+  },
+  titleContainer: {
+    width: "40%",
+    borderBottomWidth: 2,
+    borderBottomColor: "#000",
+    marginBottom: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
+    marginTop:50,
     marginVertical: 20,
-    color: "#6200ee",
-    textAlign: "left", // 左詰めにするために変更
+    color: "#000",
+    textAlign: "right", // 左詰めにするために変更
   },
   list: {
     flexGrow: 1,
@@ -106,4 +124,10 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#ddd",
   },
+  header:{
+    position: 'absolute',
+    top: 40, 
+    left: 20,
+    zIndex: 1,
+  }
 });
