@@ -30,7 +30,7 @@ export default function Work_list({ navigation }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => handlePress(item)}
+      onPress={() => navigation.navigate('Work_list_detail')}
       activeOpacity={0.7}
     >
       <View style={styles.itemContent}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop:50,
+    marginTop: 20,
     marginVertical: 20,
     color: "#000",
     textAlign: "right", // 左詰めにするために変更
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   header:{
     position: 'absolute',
-    top: 40, 
+    top: 20, 
     left: 20,
     zIndex: 1,
   }

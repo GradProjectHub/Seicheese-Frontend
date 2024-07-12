@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import { TamaguiProvider, Button } from 'tamagui';
+import config from '../../tamagui.config';
 
 const items = [
   { id: "1", title: "機動戦士ガンダム", count: 5 },
   { id: "2", title: "機動戦士Zガンダム", count: 6 },
   { id: "3", title: "機動戦士ガンダムZZ", count: 2 },
-  { id: "4", title: "機動戦士 逆襲のシャア", count: 40 },
+  { id: "4", title: "機動戦士ガンダム逆襲のシャア", count: 40 },
   { id: "5", title: "機動戦士ガンダムユニコーン", count: 2 },
 ];
 
 const Separator = () => <View style={styles.separator} />;
 
-export default function App() {
+export default function Work_list_detail({ navigation }) {
   const handlePress = (item) => {
     Alert.alert(`${item.title}がクリックされました`);
   };
@@ -39,6 +41,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TamaguiProvider config={config}>
+          <Button size="$3" theme="active"onPress={() => navigation.navigate('Work_list')}>
+            戻る
+          </Button>
+        </TamaguiProvider>
+      </View>
       <StatusBar style="light" backgroundColor="#6200ee" />
       <View style={styles.listContainer}>
         <View style={styles.titleContainer}>
@@ -67,23 +76,21 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingHorizontal: 10,
-    alignItems: "center", // Center all content within this container
+    alignItems: "flex-end", // 左詰めにするために変更
   },
   titleContainer: {
-    alignItems: "center", // Center title and underline horizontally
-    marginVertical: 20,
+    width: "60%",
+    borderBottomWidth: 2,
+    borderBottomColor: "#000",
+    marginBottom: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#000", // Black color
-    textAlign: "center", // Center the title text
-  },
-  titleUnderline: {
-    borderBottomWidth: 2, // Increase thickness if desired
-    borderBottomColor: "#000", // Black color
-    width: "100%", // Ensure the underline spans the width of the title container
-    marginTop: 5, // Space between title and underline
+    marginTop: 20,
+    marginVertical: 20,
+    color: "#000",
+    textAlign: "right", // 左詰めにするために変更
   },
   list: {
     flexGrow: 1,
@@ -117,4 +124,10 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#ddd",
   },
+  header:{
+    position: 'absolute',
+    top: 20, 
+    left: 20,
+    zIndex: 1,
+  }
 });
