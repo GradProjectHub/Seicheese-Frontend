@@ -45,20 +45,20 @@ export default function Pin_list({ navigation }) {
   };
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.header}>
         <TamaguiProvider config={config}>
-          <Button size="$3" theme="active" onPress={() => navigation.navigate('MenuScreen')}>
+          <Button size="$3" theme="active"onPress={() => navigation.navigate('MenuScreen')}>
             戻る
           </Button>
         </TamaguiProvider>
       </View>
+      
       <StatusBar style="auto" />
 
       <TamaguiProvider config={config}>
-        
-
-        <ScrollView contentContainerStyle={styles.pinsContainer}>
+        <ScrollView contentContainerStyle={styles.pinsContainer}> 
           {displayedPins.map((pin) => (
             <TouchableOpacity key={pin.id} style={styles.pin} onPress={() => openPinCheck(pin)}>
               <View style={styles.pinContent}>
@@ -105,6 +105,7 @@ export default function Pin_list({ navigation }) {
                 </View>
               </>
             )}
+            
           </View>
         </View>
       </Modal>
@@ -227,9 +228,11 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontWeight: 'bold',
   },
-  header: {
+  header:{
     position: 'absolute',
     top: 40, 
-    left: 20, 
-  },
+    left: 20,
+    zIndex: 1,
+  }
+  
 });
