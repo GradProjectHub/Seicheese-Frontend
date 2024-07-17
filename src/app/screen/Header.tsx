@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <View style={styles.headerContainer}>
       <IconButton
+        style={styles.iconButton}
         icon="magnify"
         size={24}
         onPress={() => console.log('ボタンクリック')}
@@ -16,7 +17,7 @@ const Header = () => {
 
 const styles = {
   headerContainer: {
-    height: '10%',
+    height: '12%',
     backgroundColor: '#fff',
     alignItems: 'center',
     position: 'absolute',
@@ -27,9 +28,10 @@ const styles = {
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingTop: 50, 
+    paddingBottom: 20,
   },
   iconButton: {
-    marginTop: 10, 
+    
   }
 } as const;
 
