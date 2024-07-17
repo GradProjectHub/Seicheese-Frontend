@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: '25%',
     marginVertical: 20,
     color: "#000",
     textAlign: "right", // 左詰めにするために変更
