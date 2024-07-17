@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { TamaguiProvider } from 'tamagui';
-import config from './tamagui.config';
+import config from '../../tamagui.config';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function App() {
+export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -34,7 +34,10 @@ export default function App() {
             <Text style={styles.linkText}>パスワードを忘れた方はこちら</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.loginButton} onPress={() => {}}>
+          <TouchableOpacity 
+            style={styles.loginButton} 
+            onPress={() => navigation.navigate('MainApp')}
+          >
             <Text style={styles.loginButtonText}>ログイン</Text>
           </TouchableOpacity>
         </View>
