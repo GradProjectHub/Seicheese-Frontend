@@ -4,10 +4,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Route from './app/Route/route';
 import Login from './app/screen/login';
 import Header from './app/screen/Header';
+import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
+    InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
+  })
+
+  if (!loaded) {
+    return null
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
