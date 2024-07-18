@@ -61,7 +61,7 @@ export default function MainScreen({ navigation }) {
           <Text style={styles.errorText}>{errorMsg}</Text>
         ) : location ? (
           <MapView
-            style={styles.map}
+            style={[styles.map]}
             initialRegion={{
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
@@ -133,6 +133,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   crosshairContainer: {
+    // 地図との重なりを調整するためabsolute指定
+    position: 'absolute',
     alignItems: 'center',
     zIndex: 1000,
   },
