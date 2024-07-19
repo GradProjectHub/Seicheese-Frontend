@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 import { TamaguiProvider, YStack, XStack } from 'tamagui';
 import config from '../../tamagui.config';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Pass_change from './pass_change';
 
 export default function MenuScreen({ navigation }) {
   const [animeVisible, setAnimeVisible] = useState(true);
@@ -56,13 +57,13 @@ export default function MenuScreen({ navigation }) {
             <YStack space="$4"style={styles.whiteBox}>
               <Text style={styles.sectionTitle}>アカウント設定</Text>
               <YStack space="$3" paddingLeft="$4">
-                <TouchableOpacity style={styles.settingButton} onPress={() => {}}>
+              <TouchableOpacity style={styles.settingButton} onPress={() => navigation.navigate('Check', { nextScreen: 'Mail_change' })}>
                   <Text style={styles.settingButtonText}>メールアドレス変更</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingButton} onPress={() => {}}>
+                <TouchableOpacity style={styles.settingButton} onPress={() => navigation.navigate('Pass_change')}>
                   <Text style={styles.settingButtonText}>パスワード変更</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.settingButton, styles.deleteButton]} onPress={() => {}}>
+                <TouchableOpacity style={[styles.settingButton, styles.deleteButton]} onPress={() => navigation.navigate('Check', { nextScreen: 'Account_delete' })}>
                   <Text style={styles.deleteButtonText}>アカウント削除</Text>
                 </TouchableOpacity>
               </YStack>

@@ -1,32 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { TamaguiProvider } from 'tamagui';
-import config from './tamagui.config';
+import config from '../../tamagui.config';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation, useRoute, RouteProp, NavigationProp } from '@react-navigation/native';
 
+// ナビゲーションパラメーターの型定義
+type RootStackParamList = {
+  Check: { nextScreen: string };
+  // 他の画面の型定義も追加
+};
 
-export default function App() {
+type CheckScreenRouteProp = RouteProp<RootStackParamList, 'Check'>;
+
+type CheckScreenNavigationProp = NavigationProp<RootStackParamList, 'Check'>;
+
+export default function Check() {
+  const navigation = useNavigation<CheckScreenNavigationProp>();
+  const route = useRoute<CheckScreenRouteProp>();
+  const nextScreen = route.params.nextScreen; // 次の画面名をパラメータとして受け取る
+
+  const handleAuthentication = () => {
+    // 認証ロジックをここに追加
+    const isAuthenticated = true; // 認証が成功した場合
+
+    if (isAuthenticated) {
+      navigation.navigate(nextScreen as any);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      
       <TamaguiProvider config={config}>
         <View style={styles.boxTop}></View>
         <View style={styles.authBox}>
           <Text style={styles.authText}>認証</Text>
-          
           <Text style={styles.label}>現在のパスワード</Text>
-          <TextInput 
-            style={styles.textInput} 
-            placeholder="現在のパスワード" 
-            secureTextEntry
-          />
-          
-          <TouchableOpacity style={styles.passwordLink}>
+          <TextInput style={styles.textInput} placeholder="現在のパスワード" secureTextEntry />
+          <TouchableOpacity style={styles.passwordLink} onPress={() => navigation.navigate('Pass_change')}>
             <Text style={styles.linkText}>パスワードを忘れた方はこちら</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={styles.authButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.authButton} onPress={handleAuthentication}>
             <Text style={styles.authButtonText}>次へ</Text>
           </TouchableOpacity>
         </View>
@@ -35,6 +50,8 @@ export default function App() {
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

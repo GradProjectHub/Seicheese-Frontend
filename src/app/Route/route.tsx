@@ -10,6 +10,10 @@ import Pin_list from '../screen/pin_list';
 import Work_list from '../screen/work_list';
 import Stamp from '../screen/stamp';
 import Work_list_detail from '../screen/work_list_detail';
+import Check from '../screen/check';
+import Account_delete from '../screen/account_delete';
+import Mail_change from '../screen/mail_change';
+import Pass_change from '../screen/pass_change';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -36,6 +40,11 @@ function MenuStackNavigator(){
       <MainStack.Screen name="Pin_list" component={Pin_list} />
       <MainStack.Screen name="Work_list" component={Work_list} />
       <MainStack.Screen name="Work_list_detail" component={Work_list_detail} />
+      <MainStack.Screen name="Check" component={Check} />
+      <MainStack.Screen name="Mail_change" component={Mail_change} />
+      <MainStack.Screen name="Pass_change" component={Pass_change} />
+      <MainStack.Screen name="Account_delete" component={Account_delete} />
+      
     </MainStack.Navigator>
   );
 }

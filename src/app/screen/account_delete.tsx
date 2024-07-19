@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { TamaguiProvider } from 'tamagui';
-import config from './tamagui.config';
+import config from '../../tamagui.config';
 import Icon from 'react-native-vector-icons/AntDesign'; // アイコンライブラリのインポート
 
-export default function App() {
+export default function Account_delete({ navigation }) {
   const [isChecked, setChecked] = useState(false);
 
   return (
@@ -40,7 +40,7 @@ export default function App() {
             <Text style={styles.deleteButtonText}>削除</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.cancelButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.navigate('MenuScreen')}>
             <Text style={styles.cancelButtonText}>キャンセル</Text>
           </TouchableOpacity>
         </View>
