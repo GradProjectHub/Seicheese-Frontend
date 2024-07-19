@@ -5,7 +5,7 @@ import config from '../../tamagui.config';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export default function Signup() {
+export default function Signup({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -35,7 +35,7 @@ export default function Signup() {
             secureTextEntry
           />
 
-          <TouchableOpacity style={styles.registerButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('MainApp')}>
             <Text style={styles.registerButtonText}>登録</Text>
           </TouchableOpacity>
         </View>

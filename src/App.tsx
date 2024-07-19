@@ -5,6 +5,7 @@ import Route from './app/Route/route';
 import Login from './app/screen/login';
 import Header from './app/screen/Header';
 import { useFonts } from 'expo-font';
+import  Signup from './app/screen/signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,11 @@ export default function App() {
           name="Login"
           component={Login}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Signup"
+          component={Signup}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="MainApp"

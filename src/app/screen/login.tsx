@@ -27,7 +27,9 @@ export default function Login({ navigation }) {
             secureTextEntry
           />
           
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={() => navigation.navigate('Signup')}
+          >
             <Text style={styles.linkText}>新規登録</Text>
           </TouchableOpacity>
           <TouchableOpacity>
