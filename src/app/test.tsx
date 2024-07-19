@@ -6,12 +6,12 @@ import config from '../tamagui.config';
 const TestScreen=() =>{
   return (
     <View style={styles.container}>
-      <Text>おはよう！</Text>
+      <Text>パスワードの認証</Text>
       <StatusBar style="auto" />
 
       <TamaguiProvider config={config}>
         <Button size="$3" theme="active">
-            スタート
+            認証！
         </Button>
       </TamaguiProvider>
       
