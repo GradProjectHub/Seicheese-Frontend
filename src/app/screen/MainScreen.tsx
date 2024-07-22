@@ -13,8 +13,9 @@ export default function MainScreen({ navigation }) {
 
   // 仮のマーカーデータ
   const markers = [
-    { id: 1, coordinate: { latitude: 35.6255, longitude: 139.7761 }, title: "ガンダムベース東京" },
-    { id: 2, coordinate: { latitude: 35.6586, longitude: 139.7454 }, title: "スカイツリー" },
+    { id: 1, coordinate: { latitude: 35.6586, longitude: 139.7454 }, title: "東京タワー" },
+    { id: 2, coordinate: { latitude: 35.6255, longitude: 139.7761 }, title: "ガンダムベース東京" },
+    { id: 3, coordinate: { latitude: 34.819824, longitude: 137.033426 }, title: "齋藤家" },
   ];
 
   useEffect(() => {
