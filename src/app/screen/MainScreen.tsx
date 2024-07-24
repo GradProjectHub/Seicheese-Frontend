@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, Dimensions, Alert, TouchableOpacity } from 'rea
 import { StatusBar } from 'expo-status-bar';
 import { Button, TamaguiProvider } from 'tamagui';
 import config from '../../tamagui.config';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
+import CustomCallout from './CustomCallout'; // カスタムコールアウトをインポート
 
-// Custom TouchableOpacity Component
 const CustomTouchableOpacity = ({ onPress, style, children }) => {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -23,16 +23,14 @@ const CustomTouchableOpacity = ({ onPress, style, children }) => {
 };
 
 export default function MainScreen({ navigation }) {
-
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // 仮のマーカーデータ
   const markers = [
-    { id: 1, coordinate: { latitude: 35.6586, longitude: 139.7454 }, title: "東京タワー" },
-    { id: 2, coordinate: { latitude: 35.6255, longitude: 139.7761 }, title: "ガンダムベース東京" },
-    { id: 3, coordinate: { latitude: 34.819824, longitude: 137.033426 }, title: "齋藤家" },
-    { id: 4, coordinate: { latitude: 35.62356, longitude: 140.18459 }, title: "野口家"},
+    { id: 1, coordinate: { latitude: 35.6586, longitude: 139.7454 }, title: "東京タワー", address: "東京都港区芝公園4丁目2−8", details: "観光名所" },
+    { id: 2, coordinate: { latitude: 35.6255, longitude: 139.7761 }, title: "ガンダムベース東京", address: "東京都江東区", details: "ガンダム関連の展示" },
+    { id: 3, coordinate: { latitude: 34.819824, longitude: 137.033426 }, title: "齋藤家", address: "愛知県豊橋市", details: "住宅" },
+    { id: 4, coordinate: { latitude: 35.62356, longitude: 140.18459 }, title: "野口家", address: "千葉県東金市", details: "住宅"},
   ];
 
   useEffect(() => {
@@ -62,10 +60,7 @@ export default function MainScreen({ navigation }) {
     })();
   }, []);
 
-  // 十字ポインターの表示状態を管理するためのuseStateフック
   const [showCross, setShowCross] = useState(false);
-
-  // 十字ポインターの表示/非表示を切り替える関数
   const toggleCross = () => {
     setShowCross(prev => !prev);
   };
@@ -74,7 +69,6 @@ export default function MainScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <TamaguiProvider config={config}>
-        {/* 地図の表示 */}
         {errorMsg ? (
           <Text style={styles.errorText}>{errorMsg}</Text>
         ) : location ? (
@@ -91,14 +85,20 @@ export default function MainScreen({ navigation }) {
               <Marker
                 key={marker.id}
                 coordinate={marker.coordinate}
-                title={marker.title}
-              />
+              >
+                <Callout>
+                  <CustomCallout
+                    title={marker.title}
+                    address={marker.address}
+                    details={marker.details}
+                  />
+                </Callout>
+              </Marker>
             ))}
           </MapView>
         ) : (
           <Text style={styles.loadingText}>マップを読み込んでいます...</Text>
         )}
-        {/* 十字ポインターと決定ボタンの表示 */}
         {showCross && (
           <View style={styles.crosshairContainer}>
             <Text style={styles.crosshair}>+</Text>
@@ -115,7 +115,6 @@ export default function MainScreen({ navigation }) {
             </Button>
           </View>
         )}
-        {/* 登録ボタン（十字表示中はキャンセルボタンに変化） */}
         <Button
           size="$3"
           theme="active"
@@ -124,11 +123,9 @@ export default function MainScreen({ navigation }) {
         >
           {showCross ? 'キャンセル' : '登録'}
         </Button>
-        {/* チェックインボタン */}
         <CustomTouchableOpacity
           style={[styles.checkbutton, styles.shadow]}
           onPress={() => {
-            // チェックインの処理
           }}
         >
           <Text style={styles.buttonText}>チェックイン</Text>
@@ -150,7 +147,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   crosshairContainer: {
-    // 地図との重なりを調整するためabsolute指定
     position: 'absolute',
     alignItems: 'center',
     zIndex: 1000,
@@ -162,8 +158,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     left: 20,
-    width: 95,  // ボタンの幅
-    height: 50,  // ボタンの高さ
+    width: 95,
+    height: 50,
   },
   checkbutton: {
     position: 'absolute',
@@ -209,7 +205,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    lineHeight: 90, // ボタンの高さと同じにして中央揃え
+    lineHeight: 90,
     fontSize: 16,
   },
   pressed: {
