@@ -1,10 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Alert, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { Button, TamaguiProvider } from 'tamagui';
 import config from '../../tamagui.config';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
+
+// Custom TouchableOpacity Component
+const CustomTouchableOpacity = ({ onPress, style, children }) => {
+  const [isPressed, setIsPressed] = useState(false);
+
+  return (
+    <TouchableOpacity
+      onPressIn={() => setIsPressed(true)}
+      onPressOut={() => setIsPressed(false)}
+      onPress={onPress}
+      style={[style, isPressed && styles.pressed]}
+    >
+      {children}
+    </TouchableOpacity>
+  );
+};
 
 export default function MainScreen({ navigation }) {
 
@@ -16,6 +32,7 @@ export default function MainScreen({ navigation }) {
     { id: 1, coordinate: { latitude: 35.6586, longitude: 139.7454 }, title: "東京タワー" },
     { id: 2, coordinate: { latitude: 35.6255, longitude: 139.7761 }, title: "ガンダムベース東京" },
     { id: 3, coordinate: { latitude: 34.819824, longitude: 137.033426 }, title: "齋藤家" },
+    { id: 4, coordinate: { latitude: 35.62356, longitude: 140.18459 }, title: "野口家"},
   ];
 
   useEffect(() => {
@@ -107,16 +124,15 @@ export default function MainScreen({ navigation }) {
         >
           {showCross ? 'キャンセル' : '登録'}
         </Button>
-
         {/* チェックインボタン */}
-        <Button
-          size="$3"
-          theme="active"
-          onPress={() => navigation.navigate('SubScreen')}
-          style={styles.checkbutton}
+        <CustomTouchableOpacity
+          style={[styles.checkbutton, styles.shadow]}
+          onPress={() => {
+            // チェックインの処理
+          }}
         >
-          チェックイン
-        </Button>
+          <Text style={styles.buttonText}>チェックイン</Text>
+        </CustomTouchableOpacity>
       </TamaguiProvider>
     </View>
   );
@@ -140,7 +156,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   crosshair: {
-    fontSize: 50,
+    fontSize: 80,
   },
   addbutton: {
     position: 'absolute',
@@ -162,6 +178,16 @@ const styles = StyleSheet.create({
     height: 90,
     zIndex: 999,
   },
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   cancelButton: {
     backgroundColor: 'red',
   },
@@ -179,5 +205,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     margin: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    lineHeight: 90, // ボタンの高さと同じにして中央揃え
+    fontSize: 16,
+  },
+  pressed: {
+    opacity: 0.5,
+    transform: [{ scale: 0.95 }],
   },
 });
